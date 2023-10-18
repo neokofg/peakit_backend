@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+    php:
+        build: Dockerfile
+        volumes:
+            - ./backend/php/php.ini:/usr/local/etc/php/php.ini
+            - .:/workspace/server
+        restart: on-failure:5
+    nginx:
+        depends_on:
+            -  php
+        image: nginx:latest
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./nginx:/etc/nginx/conf.d
+            - .:/workspace
+        restart: on-failure:5
+    pg:
+        image: postgres:alpine3.18
+        restart: always
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=password
+            - POSTGRES_DB=main
+        ports:
+            - '5432:5432'
+        volumes:
+            - db:/var/lib/postgresql/data
