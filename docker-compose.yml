@@ -2,7 +2,8 @@ version: '3'
 
 services:
     php:
-        build: Dockerfile
+        build:
+            dockerfile: Dockerfile
         volumes:
             - ./backend/php/php.ini:/usr/local/etc/php/php.ini
             - .:/workspace/server
@@ -28,4 +29,4 @@ services:
         ports:
             - '5432:5432'
         volumes:
-            - .:/var/lib/postgresql/data
+            - .:/workspace/db
