@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->uuid("id")->primary();
-            $table->string('name')->nullable();
-            $table->string('email')->unique();
-            $table->boolean('is_email_verified')->default(false);
-            $table->string('password')->nullable();
+        Schema::create('news', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('news');
     }
 };
