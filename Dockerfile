@@ -18,4 +18,5 @@ RUN apt-get install -y gcc g++ autoconf
 RUN pecl install swoole && docker-php-ext-enable swoole
 COPY . /workspace
 WORKDIR /workspace
+ENV DB_HOST pg
 CMD ["php", "artisan", "octane:start", "--host=0.0.0.0"]
