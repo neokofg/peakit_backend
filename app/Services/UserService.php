@@ -14,4 +14,14 @@ class UserService {
             return false;
         }
     }
+
+    public function user_update($r, $u): Bool
+    {
+        try {
+            $u->update($r);
+            return true;
+        } catch (Throwable $e) {
+            return false;
+        }
+    }
 }

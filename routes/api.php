@@ -33,6 +33,7 @@ Route::prefix("user")->middleware('auth:sanctum')->group(function () {
     Route::get('get', [UserController::class, "get_user"]);
     Route::get('ticket', [TicketController::class, "get_ticket"]);
     Route::get('ticket/qr', [TicketController::class, "get_ticket_qr"]);
+    Route::post('update', [UserController::class, "update_user"]);
     Route::prefix("buy")->group(function() {
        Route::post("ticket", [PaymentController::class, "buy_ticket"]);
     });
