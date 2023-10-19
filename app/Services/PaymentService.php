@@ -38,7 +38,7 @@ class PaymentService {
                     'expirationDateTime' => $expDate,
                     'email' => 'support@charity-steps.ru',
                     'account' => $u->id,
-                    'successUrl' => 'http://localhost:8000/api/callback?billID='. $c_f->id
+                    'successUrl' => 'https://deti-azii.ru/api/callback?billID='. $c_f->id
                 ];
                 $rsp = $b_p->createBill($c_f->id, $f);
                 return $rsp['payUrl'];
