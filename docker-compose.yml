@@ -2,6 +2,7 @@ version: '3'
 
 services:
     php:
+        container_name: php
         build:
             dockerfile: Dockerfile
         volumes:
@@ -9,6 +10,7 @@ services:
             - .:/workspace
         restart: on-failure:5
     nginx:
+        container_name: nginx
         depends_on:
             -  php
         image: nginx:latest
@@ -20,6 +22,7 @@ services:
             - .:/workspace
         restart: on-failure:5
     pg:
+        container_name: pg
         image: postgres:alpine3.18
         restart: always
         environment:
