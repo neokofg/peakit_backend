@@ -6,7 +6,7 @@ services:
             dockerfile: Dockerfile
         volumes:
             - ./backend/php/php.ini:/usr/local/etc/php/php.ini
-            - .:/workspace/server
+            - .:/workspace
         restart: on-failure:5
     nginx:
         depends_on:
