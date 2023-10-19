@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Throwable;
 
 class UserService {
@@ -18,7 +19,13 @@ class UserService {
     public function user_update($r, $u): Bool
     {
         try {
-            $u->update($r);
+            if(isset($r['name'])) {
+                $u->name = $r['name'];
+            }
+            if(isset($r['password'])) {
+                $u->password = Hash::make($r['password']);
+            }
+            $u->save();
             return true;
         } catch (Throwable $e) {
             return false;
