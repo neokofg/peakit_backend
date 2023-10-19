@@ -4,6 +4,8 @@ use App\Http\Controllers\User\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\User\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,5 +30,12 @@ Route::prefix("auth")->controller(AuthController::class)->group(function() {
 });
 
 Route::prefix("user")->middleware('auth:sanctum')->group(function () {
-    Route::get('/get', [UserController::class, "get_user"]);
+    Route::get('get', [UserController::class, "get_user"]);
+    Route::get('ticket', [TicketController::class, "get_ticket"]);
+    Route::get('ticket/qr', [TicketController::class, "get_ticket_qr"]);
+    Route::prefix("buy")->group(function() {
+       Route::post("ticket", [PaymentController::class, "buy_ticket"]);
+    });
 });
+Route::post("ticket", [TicketController::class, "get_ticket_by_id"]);
+Route::get("callback", [PaymentController::class, "callback"]);
