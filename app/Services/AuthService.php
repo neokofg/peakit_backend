@@ -73,7 +73,7 @@ class AuthService {
             });
             return $token;
         } catch (Throwable $e) {
-            return false;
+            return dd($e);
         }
     }
 
@@ -84,8 +84,6 @@ class AuthService {
         }
         try {
             $u->name = $r['name'];
-            $u->surname = $r['surname'];
-            $u->sex = $r['sex'];
             $u->password = Hash::make($r['password']);
             $u->save();
             return true;
