@@ -73,7 +73,7 @@ class TicketService {
                 return $base64Image;
             };
         } catch (Throwable $e) {
-            return dd($e);
+            return false;
         }
     }
 

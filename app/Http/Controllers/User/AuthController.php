@@ -36,7 +36,7 @@ class AuthController extends Controller
         if($response) {
             return response()->json(["message" => "Аккаунт успешно подтвержден!", "status" => true, "token" => $response], Response::HTTP_OK);
         } else {
-            return response()->json(["message" => "Произошла ошибка!", "status" => false], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json(["message" => "Неверный код!", "status" => false], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -57,7 +57,7 @@ class AuthController extends Controller
         if($response) {
             return response()->json(["message" => "Вход успешно выполнен!", "status" => true, "token" => $response], Response::HTTP_OK);
         } else {
-            return response()->json(["message" => "Произошла ошибка!", "status" => false], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json(["message" => "Неверный логин или пароль!", "status" => false], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }
