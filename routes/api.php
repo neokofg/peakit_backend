@@ -23,5 +23,9 @@ Route::prefix("auth")->controller(AuthController::class)->group(function() {
    Route::post("register", "register");
    Route::post("register/approve", "register_approve");
    Route::post("login", "login");
-    Route::middleware('auth:sanctum')->post("/register/update", [AuthController::class, "register_update"]);
+   Route::middleware('auth:sanctum')->post("/register/update", [AuthController::class, "register_update"]);
+});
+
+Route::prefix("user")->middleware('auth:sanctum')->group(function () {
+    Route::get('/get', [UserController::class, "get_user"]);
 });
